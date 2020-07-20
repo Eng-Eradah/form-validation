@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Login Form Validation </title>
+	<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+	
+<div class="wrapper">
+	<div class="form">
+		<div class="title">
+			Create Account
+		</div>
+		<form method="post" action="successpage.html" id="form1" onchange="validation();">
+			<div class="input_wrap">
+				<label for="input_text"> Username</label>
+				<div class="input_field">
+					<input type="text" class="input" id="user">
+				</div>
+			</div>
+
+			<div class="input_wrap">
+				<label for="input_text"> Email</label>
+				<div class="input_field">
+					<input type='email' class="input" id="email"/>
+					<small id="helpId4" class="text-muted"></small>
+
+				</div>
+			</div>
+
+			<div class="input_wrap">
+				<label for="input_password">Password</label>
+				<div class="input_field">
+					<input type='password' class="input"  id="password"/>
+					<small id="helpId2" class="text-muted"></small>
+				</div>
+			</div>
+			<div class="input_wrap">
+				<label for="input_password">Confirm Password</label>
+				<div class="input_field">
+					<input type='password' class="input" id="password2"/>
+					<small id="helpId3" class="text-muted"></small>
+				</div>
+			</div>
+			<div class="input_wrap">
+				<label for="input_password">Web Site</label>
+				<div class="input_field">
+					<input type='url'  class="input" id="url"/>
+					<small id="helpId5" class="text-muted"></small>
+								</div>
+			</div>
+
+			<div class="input_wrap">
+				<input type="submit" id="login_btn" class="btn disabled" value="Register" >
+			</div>
+		</form>
+	</div>
+</div>
+<script>
+var form1=document.getElementById("form1");
+var inputtxt=document.getElementById("password");
+var inputtxt2=document.getElementById("password2");
+var inputtxt3=document.getElementById("email");
+var inputtxt4=document.getElementById("url");
+var sub=document.getElementById("sub");
+
+
+
+var mass2=document.getElementById("helpId2");
+var mass3=document.getElementById("helpId3");
+var mass4=document.getElementById("helpId4");
+var mass5=document.getElementById("helpId5");
+
+var paswd=  /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,15}$/;
+var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+var urlformat = new RegExp('^(https?:\\/\\/)?'+ // protocol
+            '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.?)+[a-z]{2,}|'+ // domain name
+            '((\\d{1,3}\\.){3}\\d{1,3}))'+ // ip (v4) address
+            '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ //port
+            '(\\?[;&amp;a-z\\d%_.~+=-]*)?'+ // query string
+            '(\\#[-a-z\\d_]*)?$','i');
+
+var login_btn = document.querySelector("#login_btn");
+login_btn.disabled = true;
+console.log(form1[0]);
+
+
+
+
+function validation(){
+if(form1[0].value!='' &&  mailformat.test(form1[1].value) && paswd.test(form1[2].value) && (form1[3].value=== form1[2].value) && urlformat.test(form1[4].value))
+{
+	login_btn.disabled = false;
+	login_btn.className = "btn enabled"
+}
+else{
+	login_btn.disabled = true;
+}
+}
+
+
+form1[2].addEventListener("mouseout",function CheckPassword() 
+{ 
+    console.log(inputtxt);
+if(form1[2].value.match(paswd)) 
+{ 
+    form1[2].style.borderColor="green";
+
+return true;
+}
+else
+{ 
+    mass2.innerHTML = "* Enter corect password ";
+    form1[2].style.borderColor="red";
+
+return false;
+}
+});
+
+form1[3].addEventListener("mouseout",function confirmPass() 
+{ 
+if(form1[3].value!=inputtxt.value) 
+{ 
+    mass3.innerHTML = "* Not match password ";
+    form1[3].style.borderColor="red";
+    return false;
+}
+else
+{ 
+    inputtxt2.style.borderColor="green";
+    return true;
+}
+});
+
+form1[1].addEventListener("mouseout",function confirmEmail() 
+{ 
+if(form1[1].value.match(mailformat))
+{
+    form1[1].style.borderColor="green";
+return true;
+}
+else
+{
+    mass4.innerHTML = "*Enter failed Email ";
+    form1[1].style.borderColor="red";
+return false;
+}
+});
+
+
+form1[4].addEventListener("mouseout",function confirmUrl() 
+{ 
+    
+if(form1[4].value.match(urlformat))
+{
+    form1[4].style.borderColor="green";
+return true;
+}
+else
+{
+    mass5.innerHTML = "*Enter failed Email ";
+    form1[4].style.borderColor="red";
+return false;
+}
+});
+
+
+</script>
+
+</body>
+</html>
