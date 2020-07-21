@@ -106,7 +106,7 @@ else{
 }
 
 
-form1[0].addEventListener("mouseout",function confirmName() 
+form1[0].addEventListener("input",function confirmName() 
 { 
     
 if(form1[0].value.match(nameFormat))
@@ -123,7 +123,7 @@ return false;
 });
 
 
-form1[1].addEventListener("mouseout",function confirmEmail() 
+form1[1].addEventListener("input",function confirmEmail() 
 { 
 if(form1[1].value.match(mailformat))
 {
@@ -138,7 +138,7 @@ return false;
 }
 });
 
-form1[2].addEventListener("mouseout",function CheckPassword() 
+form1[2].addEventListener("input",function CheckPassword() 
 { 
 if(form1[2].value.match(paswd)) 
 { 
@@ -155,7 +155,7 @@ return false;
 }
 });
 
-form1[3].addEventListener("mouseout",function confirmPass() 
+form1[3].addEventListener("input",function confirmPass() 
 { 
 if(form1[3].value!=form1[2].value) 
 { 
@@ -172,7 +172,7 @@ else
 
 
 
-form1[4].addEventListener("mouseout",function valitedAge(){
+form1[4].addEventListener("input",function valitedAge(){
 var dateString = form1[4].value;
 if(dateString !=""){
   var today = new Date();
@@ -201,7 +201,7 @@ else {
   return false;
 }
 });
-form1[5].addEventListener("mouseout",function confirmUrl() 
+form1[5].addEventListener("input",function confirmUrl() 
 { 
     
 if(form1[5].value.match(urlformat))
