@@ -17,6 +17,8 @@
 				<label for="input_text"> Username</label>
 				<div class="input_field">
 					<input type="text" class="input" id="user">
+					<small id="helpId1" class="text-muted"></small>
+
 				</div>
 			</div>
 
@@ -44,6 +46,13 @@
 				</div>
 			</div>
 			<div class="input_wrap">
+				<label for="input_password">Age</label>
+				<div class="input_field">
+					<input type='date' class="input" id="age1"/>
+					<small id="helpId6" class="text-muted"></small>
+				</div>
+			</div>
+			<div class="input_wrap">
 				<label for="input_password">Web Site</label>
 				<div class="input_field">
 					<input type='url'  class="input" id="url"/>
@@ -59,19 +68,17 @@
 </div>
 <script>
 var form1=document.getElementById("form1");
-var inputtxt=document.getElementById("password");
-var inputtxt2=document.getElementById("password2");
-var inputtxt3=document.getElementById("email");
-var inputtxt4=document.getElementById("url");
 var sub=document.getElementById("sub");
 
 
-
+var mass1=document.getElementById("helpId1");
 var mass2=document.getElementById("helpId2");
 var mass3=document.getElementById("helpId3");
 var mass4=document.getElementById("helpId4");
 var mass5=document.getElementById("helpId5");
+var mass6=document.getElementById("helpId6");
 
+var nameFormat= /^[A-Za-z ]+$/;
 var paswd=  /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,15}$/;
 var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 var urlformat = new RegExp('^(https?:\\/\\/)?'+ // protocol
@@ -83,13 +90,12 @@ var urlformat = new RegExp('^(https?:\\/\\/)?'+ // protocol
 
 var login_btn = document.querySelector("#login_btn");
 login_btn.disabled = true;
-console.log(form1[0]);
 
 
 
 
 function validation(){
-if(form1[0].value!='' &&  mailformat.test(form1[1].value) && paswd.test(form1[2].value) && (form1[3].value=== form1[2].value) && urlformat.test(form1[4].value))
+if( nameFormat.test(form1[0].value) &&  mailformat.test(form1[1].value) && paswd.test(form1[2].value) && (form1[3].value=== form1[2].value) &&form1[4].value!=''&& urlformat.test(form1[5].value))
 {
 	login_btn.disabled = false;
 	login_btn.className = "btn enabled"
@@ -100,9 +106,40 @@ else{
 }
 
 
+form1[0].addEventListener("mouseout",function confirmName() 
+{ 
+    
+if(form1[0].value.match(nameFormat))
+{
+    form1[0].style.borderColor="green";
+return true;
+}
+else
+{
+    mass1.innerHTML = "*Enter failed Name ";
+    form1[0].style.borderColor="red";
+return false;
+}
+});
+
+
+form1[1].addEventListener("mouseout",function confirmEmail() 
+{ 
+if(form1[1].value.match(mailformat))
+{
+    form1[1].style.borderColor="green";
+return true;
+}
+else
+{
+    mass4.innerHTML = "*Enter failed Email ";
+    form1[1].style.borderColor="red";
+return false;
+}
+});
+
 form1[2].addEventListener("mouseout",function CheckPassword() 
 { 
-    console.log(inputtxt);
 if(form1[2].value.match(paswd)) 
 { 
     form1[2].style.borderColor="green";
@@ -133,38 +170,60 @@ else
 }
 });
 
-form1[1].addEventListener("mouseout",function confirmEmail() 
-{ 
-if(form1[1].value.match(mailformat))
-{
-    form1[1].style.borderColor="green";
-return true;
-}
-else
-{
-    mass4.innerHTML = "*Enter failed Email ";
-    form1[1].style.borderColor="red";
+
+
+form1[4].addEventListener("mouseout",function valitedAge(){
+var dateString = form1[4].value;
+if(dateString !=""){
+  var today = new Date();
+  var birthDate = new Date(dateString);
+  var age = today.getFullYear() - birthDate.getFullYear();
+  var m = today.getMonth() - birthDate.getMonth();
+  var da = today.getDate() - birthDate.getDate();
+  
+  if(m<0){
+    m +=12;
+  }
+  if(da<0){
+    da +=30;
+  }
+  if (age >= 18) {
+	form1[4].style.borderColor="green";
+	console.log("coorect");
+    return true;
+  }
+  else {
+/*	if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate()))
+   {*/
+    mass6.innerHTML = "*You enter failed age ";
+    form1[4].style.borderColor="red";
+	console.log("NOT coorect");
+/*
 return false;
+ }*/
+    return false;
+  }
+
+}
+else {
+  return false;
 }
 });
-
-
-form1[4].addEventListener("mouseout",function confirmUrl() 
+form1[5].addEventListener("mouseout",function confirmUrl() 
 { 
     
-if(form1[4].value.match(urlformat))
+if(form1[5].value.match(urlformat))
 {
-    form1[4].style.borderColor="green";
+    form1[5].style.borderColor="green";
 return true;
 }
 else
 {
-    mass5.innerHTML = "*Enter failed Email ";
-    form1[4].style.borderColor="red";
+    mass5.innerHTML = "*Enter failed Url ";
+    form1[5].style.borderColor="red";
 return false;
 }
 });
-
 
 </script>
 
