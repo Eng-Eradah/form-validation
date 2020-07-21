@@ -157,7 +157,7 @@ return false;
 
 form1[3].addEventListener("mouseout",function confirmPass() 
 { 
-if(form1[3].value!=inputtxt.value) 
+if(form1[3].value!=form1[2].value) 
 { 
     mass3.innerHTML = "* Not Match  The password ";
     form1[3].style.borderColor="red";
@@ -165,7 +165,7 @@ if(form1[3].value!=inputtxt.value)
 }
 else
 { 
-    inputtxt2.style.borderColor="green";
+    form1[3].style.borderColor="green";
     return true;
 }
 });
