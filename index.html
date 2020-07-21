@@ -46,7 +46,7 @@
 				</div>
 			</div>
 			<div class="input_wrap">
-				<label for="input_password">Age</label>
+				<label for="input_password">Birth Date</label>
 				<div class="input_field">
 					<input type='date' class="input" id="age1"/>
 					<small id="helpId6" class="text-muted"></small>
@@ -79,7 +79,7 @@ var mass5=document.getElementById("helpId5");
 var mass6=document.getElementById("helpId6");
 
 var nameFormat= /^[A-Za-z ]+$/;
-var paswd=  /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,15}$/;
+var paswd=  /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{4,15}$/;
 var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 var urlformat = new RegExp('^(https?:\\/\\/)?'+ // protocol
             '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.?)+[a-z]{2,}|'+ // domain name
@@ -116,7 +116,7 @@ return true;
 }
 else
 {
-    mass1.innerHTML = "*Enter failed Name ";
+    mass1.innerHTML = "*Enter field Name ";
     form1[0].style.borderColor="red";
 return false;
 }
@@ -132,7 +132,7 @@ return true;
 }
 else
 {
-    mass4.innerHTML = "*Enter failed Email ";
+    mass4.innerHTML = "*Enter Field Email ";
     form1[1].style.borderColor="red";
 return false;
 }
@@ -148,7 +148,7 @@ return true;
 }
 else
 { 
-    mass2.innerHTML = "* Enter corect password ";
+    mass2.innerHTML = "*  Password Should Contain a Number/Carcter/Special Carcter  ";
     form1[2].style.borderColor="red";
 
 return false;
@@ -159,7 +159,7 @@ form1[3].addEventListener("mouseout",function confirmPass()
 { 
 if(form1[3].value!=inputtxt.value) 
 { 
-    mass3.innerHTML = "* Not match password ";
+    mass3.innerHTML = "* Not Match  The password ";
     form1[3].style.borderColor="red";
     return false;
 }
@@ -181,26 +181,18 @@ if(dateString !=""){
   var m = today.getMonth() - birthDate.getMonth();
   var da = today.getDate() - birthDate.getDate();
   
-  if(m<0){
-    m +=12;
-  }
-  if(da<0){
-    da +=30;
-  }
+ 
   if (age >= 18) {
 	form1[4].style.borderColor="green";
 	console.log("coorect");
     return true;
   }
   else {
-/*	if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate()))
-   {*/
-    mass6.innerHTML = "*You enter failed age ";
+
+    mass6.innerHTML = "*You Age shoude by 18 Or  More ";
     form1[4].style.borderColor="red";
 	console.log("NOT coorect");
-/*
-return false;
- }*/
+
     return false;
   }
 
@@ -219,7 +211,7 @@ return true;
 }
 else
 {
-    mass5.innerHTML = "*Enter failed Url ";
+    mass5.innerHTML = "*Enter Field Url ";
     form1[5].style.borderColor="red";
 return false;
 }
